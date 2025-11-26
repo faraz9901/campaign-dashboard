@@ -7,25 +7,25 @@ import { Campaign } from "@/types/campaign.types";
 import { useQuery } from "@tanstack/react-query";
 
 import {
-    Card,
-    CardHeader,
-    CardTitle,
-    CardDescription,
-    CardContent,
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 
 import {
-    Table,
-    TableHeader,
-    TableRow,
-    TableHead,
-    TableBody,
-    TableCell,
+  Table,
+  TableHeader,
+  TableRow,
+  TableHead,
+  TableBody,
+  TableCell,
 } from "@/components/ui/table";
-import { ArrowUpRight, RefreshCcw } from "lucide-react";
+import { ArrowUpRight, Loader2, RefreshCcw } from "lucide-react";
 
 export default function CampaignTable() {
   const { data, isLoading, error, refetch } = useQuery({
@@ -36,6 +36,17 @@ export default function CampaignTable() {
   const campaigns: Campaign[] = React.useMemo(() => {
     return data?.campaigns ?? [];
   }, [data]);
+
+
+  const [isSpinning, setIsSpinning] = React.useState(false);
+
+  const handleRefresh = () => {
+    setIsSpinning(true);
+    refetch().finally(() => {
+      // Keep spinning for at least 500ms so animation is noticeable
+      setTimeout(() => setIsSpinning(false), 500);
+    });
+  };
 
   const statusVariant = (status: string) => {
     switch (status) {
@@ -56,17 +67,20 @@ export default function CampaignTable() {
         <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
           <div>
             <CardTitle className="text-xl text-slate-900">Campaign list</CardTitle>
-            
+
           </div>
 
           <Button
             size="sm"
             variant="outline"
             className="w-full gap-2 md:w-auto"
-            onClick={() => refetch()}
+            onClick={handleRefresh}
             disabled={isLoading}
           >
-            <RefreshCcw className="h-4 w-4" />
+            <RefreshCcw
+              className={`h-4 w-4 transition-transform duration-500 ${isSpinning ? "animate-spin" : ""
+                }`}
+            />
             Refresh
           </Button>
         </div>

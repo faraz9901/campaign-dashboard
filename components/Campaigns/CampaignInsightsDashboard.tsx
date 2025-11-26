@@ -54,6 +54,10 @@ export default function CampaignInsightsDashboard() {
       .replace(/\b\w/g, (char) => char.toUpperCase());
 
   const formatValue = (key: string, value: number) => {
+
+    if (key === "timestamp") {
+      return new Date(value as number).toLocaleString("en-IN");
+    }
     if (key === "avg_ctr" || key === "avg_conversion_rate") {
       return `${(value * 100).toFixed(2)}%`;
     }
