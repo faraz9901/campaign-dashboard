@@ -7,8 +7,8 @@ export default async function CampaignPage({
 }) {
   const { id } = await params;
   return (
-    <main className="min-h-screen bg-background">
-      <div className="container mx-auto max-w-6xl px-4 py-8 md:px-8 md:py-10">
+    <main className="min-h-screen bg-slate-50">
+      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
         <CampaignDetailView id={id} />
       </div>
     </main>
