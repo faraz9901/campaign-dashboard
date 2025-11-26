@@ -44,8 +44,9 @@ export default function CampaignDetailView({ id }: { id: string }) {
   }
 
   return (
-    <div className="p-6 max-w-3xl mx-auto">
-      <Card className="shadow-md rounded-2xl p-4">
+    <div className="mx-auto max-w-4xl space-y-6 px-4 py-6 md:py-8">
+      <InsightsStream id={id} />
+      <Card className="shadow-md rounded-2xl">
         <CardHeader>
           <CardTitle className="text-2xl font-semibold flex items-center justify-between">
             {campaign?.name}
@@ -54,32 +55,34 @@ export default function CampaignDetailView({ id }: { id: string }) {
         </CardHeader>
 
         <CardContent className="grid gap-4 text-base">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="p-4 bg-gray-50 rounded-xl">
-              <p className="text-gray-500 text-sm">Campaign ID</p>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="p-4 rounded-xl bg-muted">
+              <p className="text-sm text-muted-foreground">Campaign ID</p>
               <p className="font-medium">{campaign?.id}</p>
             </div>
 
-            <div className="p-4 bg-gray-50 rounded-xl">
-              <p className="text-gray-500 text-sm">Brand ID</p>
+            <div className="p-4 rounded-xl bg-muted">
+              <p className="text-sm text-muted-foreground">Brand ID</p>
               <p className="font-medium">{campaign?.brand_id}</p>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            <div className="p-4 bg-gray-50 rounded-xl">
-              <p className="text-gray-500 text-sm">Budget</p>
-              <p className="font-medium">₹ {campaign?.budget.toLocaleString()}</p>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="p-4 rounded-xl bg-muted">
+              <p className="text-sm text-muted-foreground">Budget</p>
+              <p className="font-medium">
+                ₹ {campaign?.budget.toLocaleString()}
+              </p>
             </div>
 
-            <div className="p-4 bg-gray-50 rounded-xl">
-              <p className="text-gray-500 text-sm">Daily Budget</p>
+            <div className="p-4 rounded-xl bg-muted">
+              <p className="text-sm text-muted-foreground">Daily Budget</p>
               <p className="font-medium">₹ {campaign?.daily_budget.toLocaleString()}</p>
             </div>
           </div>
 
-          <div className="p-4 bg-gray-50 rounded-xl">
-            <p className="text-gray-500 text-sm">Platforms</p>
+          <div className="p-4 rounded-xl bg-muted">
+            <p className="text-sm text-muted-foreground">Platforms</p>
             <div className="flex gap-2 mt-1 flex-wrap">
               {campaign?.platforms?.map((p) => (
                 <Badge key={p} variant="outline" className="px-3 py-1 text-xs">
@@ -89,14 +92,13 @@ export default function CampaignDetailView({ id }: { id: string }) {
             </div>
           </div>
 
-          <div className="p-4 bg-gray-50 rounded-xl">
-            <p className="text-gray-500 text-sm">Created At</p>
+          <div className="p-4 rounded-xl bg-muted">
+            <p className="text-sm text-muted-foreground">Created At</p>
             <p className="font-medium">{new Date(campaign?.created_at).toLocaleString()}</p>
           </div>
         </CardContent>
       </Card>
 
-      <InsightsStream id={id} />
     </div>
   );
 

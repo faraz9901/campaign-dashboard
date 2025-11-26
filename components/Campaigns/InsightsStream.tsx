@@ -33,22 +33,22 @@ const metricLayout: Array<{
   formatter?: (value: number) => string;
   accent: string;
 }> = [
-  { key: "impressions", label: "Impressions", icon: Activity, accent: "bg-sky-50 text-sky-700" },
-  { key: "clicks", label: "Clicks", icon: Signal, accent: "bg-emerald-50 text-emerald-700" },
-  {
-    key: "conversions",
-    label: "Conversions",
-    icon: BarChart3,
-    accent: "bg-violet-50 text-violet-700",
-  },
-  {
-    key: "spend",
-    label: "Spend",
-    icon: Wallet,
-    formatter: (value) => formatCurrency.format(value),
-    accent: "bg-amber-50 text-amber-700",
-  },
-];
+    { key: "impressions", label: "Impressions", icon: Activity, accent: "bg-sky-50 text-sky-700" },
+    { key: "clicks", label: "Clicks", icon: Signal, accent: "bg-emerald-50 text-emerald-700" },
+    {
+      key: "conversions",
+      label: "Conversions",
+      icon: BarChart3,
+      accent: "bg-violet-50 text-violet-700",
+    },
+    {
+      key: "spend",
+      label: "Spend",
+      icon: Wallet,
+      formatter: (value) => formatCurrency.format(value),
+      accent: "bg-amber-50 text-amber-700",
+    },
+  ];
 
 export default function InsightsStream({
   id,
@@ -87,7 +87,7 @@ export default function InsightsStream({
     eventSource.onerror = (err) => {
       console.error("SSE error:", err);
       setStatus("reconnecting");
-      eventSource.close();
+      eventSource.close()
       // Attempt a lightweight retry after a delay
       setTimeout(() => {
         setStatus("offline");

@@ -38,7 +38,7 @@ export default function CampaignInsightsDashboard() {
 
 
   return (
-    <div className="space-y-4 grid lg:grid-cols-3 gap-5">
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {Object.entries(insights).map(([key, value]) => (
         <Card key={key}>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
